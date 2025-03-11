@@ -3,7 +3,7 @@ package u02
 import org.junit.*
 import org.junit.Assert.*
 import u02.Task.*
-import u02.Task.Expr.{Literal, evaluate}
+import u02.Task.Expr.*
 
 class TaskTest:
 
@@ -80,4 +80,9 @@ class TaskTest:
     val expr = Expr.Add(Expr.Multiply(Literal(4), Expr.Add(Literal(7),Literal(2))), Literal(94))
     //Expected: 4*(7+2)+94 = 130
     assertEquals(130, evaluate(expr))
+
+  @Test def testShowExpr(): Unit =
+    val expr = Expr.Add(Expr.Multiply(Literal(4), Expr.Add(Literal(7), Literal(2))), Literal(94))
+    assertEquals("(4*(7+2)+94)", show(expr))
+
 

@@ -61,8 +61,11 @@ object Task extends App :
 
   object Expr:
     def evaluate(expr: Expr): Int = expr match
+      case Expr.Literal(n) => n
       case Expr.Add(x,y) => evaluate(x) + evaluate(y)
       case Expr.Multiply(x,y) => evaluate(x) * evaluate(y)
-      case Expr.Literal(n) => n
 
-    def show(expr: Expr): String=""
+    def show(expr: Expr): String = expr match
+      case Expr.Literal(n) => n.toString
+      case Expr.Add(x, y) => "("+show(x)+"+"+show(y)+")"
+      case Expr.Multiply(x, y) => show(x)+"*"+show(y)
