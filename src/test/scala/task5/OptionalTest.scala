@@ -21,7 +21,7 @@ class OptionalTest:
     val empty = Optional.Empty()
     assertEquals(1, Optional.orElse(empty, 1))
 
-  /** Task 5 -- Look the behaviour of map operator */
+  /** Lab2 5 -- Look the behaviour of map operator */
   @Test def mapShouldReturnEmptyWhenEmpty(): Unit =
     val empty: Optional[Int] = Optional.Empty()
     val result = Optional.map(empty, _ + 1)
@@ -31,3 +31,12 @@ class OptionalTest:
     val nonEmpty = Optional.Maybe(0)
     val result = Optional.map(nonEmpty, _ + 1)
     assertEquals(1, Optional.orElse(result, 1))
+
+
+  @Test def  testMapOptional(): Unit =
+    assertEquals( Optional.map(Optional.Maybe(5),(_ > 2)), Optional.Maybe(true))
+
+  @Test def testFilter(): Unit =
+    assertEquals(Optional.filter(Optional.Maybe(5),(_ > 2)),  Optional.Maybe(5))
+    assertEquals(Optional.filter(Optional.Maybe(5),(_ > 8)),  Optional.Empty())
+    assertEquals(Optional.filter(Optional.Empty(),(_ == 2)),  Optional.Empty())

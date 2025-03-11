@@ -2,8 +2,9 @@ package u02
 
 import org.junit.*
 import org.junit.Assert.*
-import u02.Task.*
-import u02.Task.Expr.*
+import task5.Optionals.Optional.*
+import u02.Lab2.*
+import u02.Lab2.Expr.*
 
 class TaskTest:
 
@@ -84,5 +85,3 @@ class TaskTest:
   @Test def testShowExpr(): Unit =
     val expr = Expr.Add(Expr.Multiply(Literal(4), Expr.Add(Literal(7), Literal(2))), Literal(94))
     assertEquals("(4*(7+2)+94)", show(expr))
-
-

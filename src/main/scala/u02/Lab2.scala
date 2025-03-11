@@ -2,7 +2,8 @@ package u02
 
 import scala.annotation.tailrec
 
-object Task extends App :
+object Lab2 extends App :
+// Task 2
   val f: Int => String =
     case n if n >= 0 => "positive"
     case _ => "negative"
@@ -13,11 +14,9 @@ object Task extends App :
 
   val neg = (fun: String => Boolean) => (string: String) => !fun(string)
   def fNeg(fun: String => Boolean): String => Boolean = (string: String) => !fun(string)
-
-  val empty: String => Boolean = _ == "" // predicate on strings
-
   def negGen[X](fun: X => Boolean): X => Boolean = (x: X) => !fun(x)
 
+  val empty: String => Boolean = _ == "" // predicate on strings
   val positive: Int => Boolean = _ >= 0
 
   val p1: Double => Double => Double => Boolean = x => y => z => x <= y && y == z
@@ -34,7 +33,7 @@ object Task extends App :
 
   def composeThree[A,B,C,D](f: C => D, g: B => C, h: A => B): A => D = (a: A) => compose(f,compose(g,h))(a)
 
-  //Task 3: Recursion
+//Task 3: Recursion
 
   def power(base: Double, exponent: Int): Double = exponent match
     case 1 => base
@@ -54,6 +53,7 @@ object Task extends App :
       case n if n != 0 => _reverseNumber(n/10,res*10 + n%10)
     _reverseNumber(n,0)
 
+//Task 4: sum types, product types
   enum Expr:
     case Literal(x: Int)
     case Add(x: Expr, y: Expr)
