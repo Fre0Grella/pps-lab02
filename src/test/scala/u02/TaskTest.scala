@@ -3,6 +3,7 @@ package u02
 import org.junit.*
 import org.junit.Assert.*
 import u02.Task.*
+import u02.Task.Expr.{Literal, evaluate}
 
 class TaskTest:
 
@@ -65,4 +66,18 @@ class TaskTest:
     assertTrue(powerTail(2,3) == 8)
     
   @Test def  testReverseNumber(): Unit =
-    assertTrue(reverseNumber(12345) == 54321)
+    assertEquals(reverseNumber(12345) ,54321)
+
+  @Test def testAddExpr(): Unit =
+    val simpleAdd = Expr.Add(Literal(5),Literal(97))
+    assertEquals(102, evaluate(simpleAdd))
+
+  @Test def testMultExpr(): Unit =
+    val simpleMul = Expr.Multiply(Literal(5), Literal(9))
+    assertEquals(45, evaluate(simpleMul))
+
+  @Test def testEvaluateComplexExpr(): Unit =
+    val expr = Expr.Add(Expr.Multiply(Literal(4), Expr.Add(Literal(7),Literal(2))), Literal(94))
+    //Expected: 4*(7+2)+94 = 130
+    assertEquals(130, evaluate(expr))
+

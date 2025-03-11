@@ -53,3 +53,16 @@ object Task extends App :
       case 0 => res
       case n if n != 0 => _reverseNumber(n/10,res*10 + n%10)
     _reverseNumber(n,0)
+
+  enum Expr:
+    case Literal(x: Int)
+    case Add(x: Expr, y: Expr)
+    case Multiply(x: Expr, y: Expr)
+
+  object Expr:
+    def evaluate(expr: Expr): Int = expr match
+      case Expr.Add(x,y) => evaluate(x) + evaluate(y)
+      case Expr.Multiply(x,y) => evaluate(x) * evaluate(y)
+      case Expr.Literal(n) => n
+
+    def show(expr: Expr): String=""
